@@ -1,6 +1,6 @@
 import unittest
-import sys
-sys.path.insert(1, '/Users/vbnetl8r6062/source/Testing/Client/Helpers')
+import sys, os
+sys.path.append(os.path.join(sys.path[0], '../../../Client/Helpers'))
 
 from number_formatter import *
 

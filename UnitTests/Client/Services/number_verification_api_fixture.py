@@ -1,8 +1,8 @@
 import unittest
 from requests import *
 from unittest.mock import Mock
-import sys
-sys.path.insert(1, '/Users/vbnetl8r6062/source/Testing/Client/Services')
+import sys, os
+sys.path.append(os.path.join(sys.path[0], '../../../Client/Services'))
 
 from number_verification_api import *
 from number_verification_api_client import *
