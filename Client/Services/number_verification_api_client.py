@@ -1,9 +1,12 @@
 import requests
+import os
+from dotenv import load_dotenv
 
 class NumberVerificationApiClient:
     def __init__(self):
+        load_dotenv()
         self._url = 'https://apilayer.net/api/validate'
-        self._access_key = 'f8bfca0f38cf122b753cc188a600f9f1'
+        self._access_key = os.getenv('NUM_VERIFIER_ACCESS_KEY')
 
     def get_number_is_verified_response(self, number_to_validate:int):
         # attempt to verify the number via the public API

@@ -7,7 +7,6 @@ sys.path.append(os.path.join(sys.path[0], 'DataAccess'))
 
 # import our number formatter and number verification API libraries
 from number_verification_api import *
-from number_verification_api_client import *
 from number_formatter import *
 from volunteer_repo import *
 
@@ -22,30 +21,30 @@ if __name__ == "__main__":
     print("Formatting number...")
     phone_number = get_formatted_number(phone_number_str)
 
-    # verify that the phone number exists using the public API
-    print("Verifying number...")
-    num_verification_api_client = NumberVerificationApiClient()
-    num_verification_api = NumberVerificationApi(num_verification_api_client)
-    number_is_verified = num_verification_api.number_is_verified(phone_number)
-
     # see if number already exists in database
     print("Seeing if number already exists in database...")
     repo = VolunteerRepo()
     existing_customer = repo.get_volunteer_by_phone_number(phone_number)
-    if existing_customer == None:
-        # ask user to enter first name, last name, and email associated with that phone number
-        print("Phone number is valid, please enter additional fields.")
-        print("First Name: ")
-        first_name = input()
-        print("Last Name: ")
-        last_name = input()
-        print("Email: ")
-        email = input()
-
-        # save new user to database
-        print("Saving new user to database...")
-        volunteer = Volunteer(first_name, last_name, phone_number, email)
-        repo.save_volunteer(volunteer)
-        print("User saved!")
+    if existing_customer != None:
+        print(f"This customer already exists! Phone number {existing_customer.phone_number} belongs to '{existing_customer.first_name} {existing_customer.last_name}'")
     else:
-        print("This customer already exists!")
+        # verify that the phone number exists using the public API
+        print("Customer does not exist in database. Verifying provided number...")
+        num_verification_api = NumberVerificationApi()
+        number_is_verified = num_verification_api.number_is_verified(phone_number)
+
+        if existing_customer == None:
+            # ask user to enter first name, last name, and email associated with that phone number
+            print("Phone number is valid, please enter additional fields.")
+            print("First Name: ")
+            first_name = input()
+            print("Last Name: ")
+            last_name = input()
+            print("Email: ")
+            email = input()
+
+            # save new user to database
+            print("Saving new user to database...")
+            volunteer = Volunteer(first_name, last_name, phone_number, email)
+            repo.save_volunteer(volunteer)
+            print("User saved!")
