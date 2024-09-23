@@ -41,5 +41,11 @@ if __name__ == "__main__":
         last_name = input()
         print("Email: ")
         email = input()
+
+        # save new user to database
+        print("Saving new user to database...")
+        volunteer = Volunteer(first_name, last_name, phone_number, email)
+        repo.save_volunteer(volunteer)
+        print("User saved!")
     else:
         print("This customer already exists!")
