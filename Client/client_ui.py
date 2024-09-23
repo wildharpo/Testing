@@ -33,7 +33,7 @@ if __name__ == "__main__":
         num_verification_api = NumberVerificationApi()
         number_is_verified = num_verification_api.number_is_verified(phone_number)
 
-        if existing_customer == None:
+        if number_is_verified:
             # ask user to enter first name, last name, and email associated with that phone number
             print("Phone number is valid, please enter additional fields.")
             print("First Name: ")
@@ -48,3 +48,5 @@ if __name__ == "__main__":
             volunteer = Volunteer(first_name, last_name, phone_number, email)
             repo.save_volunteer(volunteer)
             print("User saved!")
+        else:
+            print("Provided number was invalid.")

@@ -64,7 +64,7 @@ class VolunteerRepo:
         cursor.execute(sql)
         db_server_conn.commit()
 
-    def __delete_volunteer(self, phone_number:int):
+    def delete_volunteer(self, phone_number:int):
         db_server_conn = self.__get_db_server_conn()
         cursor = db_server_conn.cursor()
         sql = f"DELETE FROM volunteer WHERE PhoneNumber = {phone_number}"
