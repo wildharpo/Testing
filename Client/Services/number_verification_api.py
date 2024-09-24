@@ -2,8 +2,7 @@ import json
 from number_verification_api_client import *
 
 class NumberVerificationApi:
-    def __init__(self):
-        client = NumberVerificationApiClient()
+    def __init__(self, client:NumberVerificationApiClient):
         self._client = client
     
     def number_is_verified(self, number_to_validate:int):

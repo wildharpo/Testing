@@ -19,4 +19,5 @@ class NumberFormatterFixture(unittest.TestCase):
             get_formatted_number('1234')
 
 if __name__ == '__main__':
+    # if this file is launched directly, then run all unit tests included in it
     unittest.main()
