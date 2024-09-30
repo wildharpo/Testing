@@ -30,7 +30,8 @@ if __name__ == "__main__":
     else:
         # verify that the phone number exists using the public API
         print("Customer does not exist in database. Verifying provided number...")
-        num_verification_api = NumberVerificationApi()
+        num_verification_api_client = NumberVerificationApiClient()
+        num_verification_api = NumberVerificationApi(num_verification_api_client)
         number_is_verified = num_verification_api.number_is_verified(phone_number)
 
         if number_is_verified:
