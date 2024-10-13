@@ -16,7 +16,7 @@ class NumberVerificationApiFixture(unittest.TestCase):
         mock_number_verification_api_client.get_number_is_verified_response.side_effect = Exception('Oops!')
         # assert that the exception is indeed raised when the number_is_verified function is called
         with self.assertRaises(Exception):
-            NumberVerificationApi(mock_number_verification_api_client).number_is_verified('417-439-7795')
+            NumberVerificationApi(mock_number_verification_api_client).number_is_verified('417-820-1234')
 
     # verify that invalid JSON returned by the NumberVerificationApiClient response object is handled
     def test_invalid_json_response_is_handled(self):
@@ -30,7 +30,7 @@ class NumberVerificationApiFixture(unittest.TestCase):
         mock_number_verification_api_client.get_number_is_verified_response.return_value = mock_response
         # assert that the exception is indeed raised when the above invalid JSON is parsed (or rather attempted to be parsed)
         with self.assertRaises(Exception):
-            NumberVerificationApi(mock_number_verification_api_client).number_is_verified('417-439-7795')
+            NumberVerificationApi(mock_number_verification_api_client).number_is_verified('417-820-1234')
 
     # verify that a valid number passed to the NumberVerificationApi number_is_verified method returns "True"
     def test_valid_number_returns_true(self):
@@ -45,7 +45,7 @@ class NumberVerificationApiFixture(unittest.TestCase):
         # create a NumberVerificationApi instance with our mock NumberVerificationApiClient object passed to it
         number_verification_api = NumberVerificationApi(mock_number_verification_api_client)
         # assert that a valid number passed returns "True"
-        self.assertEqual(True,number_verification_api.number_is_verified('4174397795'))
+        self.assertEqual(True,number_verification_api.number_is_verified('4178201234'))
     
     # verify that an invalid number passed to the NumberVerificationApi number_is_verified method returns "False"
     def test_invalid_number_returns_false(self):
