@@ -7,7 +7,7 @@ from number_verification_api import *
 
 class NumberVerificationTest(unittest.TestCase):
     def VerifyNumberFormattedAndVerified(self):
-        formatted_number = get_formatted_number('1-417-439-7795')
+        formatted_number = get_formatted_number('1-417-820-1234')
         num_verification_api = NumberVerificationApi()
         verification_result = num_verification_api.number_is_verified(formatted_number)
-        self.assertEqual(14174397795,verification_result)
+        self.assertEqual(14178201234,verification_result)
